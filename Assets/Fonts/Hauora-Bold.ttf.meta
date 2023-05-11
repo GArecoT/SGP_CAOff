@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: bd3cd2e67939785aba7c80bba1ae8536
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Hauora
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 014cccb1c4ecbbd229c614b351dff5bc, type: 3}
+  - {fileID: 12800000, guid: b493eae9c02a16b26a1b576287b8e9ee, type: 3}
+  - {fileID: 12800000, guid: 18395110d60224722ab573ca7d0c8e6b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
