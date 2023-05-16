@@ -10,9 +10,16 @@ public class HandleTransfer : MonoBehaviour
 
     public GameObject sampleObject;
     public GameObject parentObject;
-
-    void start()
+    HandleNextStep HandleIrisIndex;
+    private void Awake()
     {
+        HandleIrisIndex = FindObjectOfType<HandleNextStep>();
+    }
+
+    private void Start()
+    {
+        /* inputField.characterValidation = TMP_InputField.CharacterValidation.Name; */
+
     }
     public void AddObject()
     {
@@ -29,5 +36,6 @@ public class HandleTransfer : MonoBehaviour
             textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
         }
     }
+
 }
 

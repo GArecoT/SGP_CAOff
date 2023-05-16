@@ -465,7 +465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 791.87, y: 0}
+  m_AnchoredPosition: {x: 771.62, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &396289334
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Para comecar, escrevaa seu nome completo
+  m_text: Para comecar, escreva seu nome completo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 922993951d0551af686431a30dc211c7, type: 2}
   m_sharedMaterial: {fileID: -4941674029580326195, guid: 922993951d0551af686431a30dc211c7, type: 2}
@@ -1312,10 +1312,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
-    m_Bottom: 120
+    m_Top: 185
+    m_Bottom: 100
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1323,6 +1323,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1164906993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
+  m_PrefabInstance: {fileID: 1178029774616375667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1213986729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,8 +1978,9 @@ MonoBehaviour:
   IrisFala_08: {fileID: 748502662714629618, guid: fc682f684ef0d3835b90a1939ea2486c, type: 3}
   IrisFala_09: {fileID: 626598054348434123, guid: b4a531d00c39819029884e9539a7d355, type: 3}
   parentObject: {fileID: 990827762}
-  IrisIndex: 0
   inputField: {fileID: 1379819453}
+  buttonText: {fileID: 1164906993}
+  IrisIndex: 0
 --- !u!4 &1836108401
 Transform:
   m_ObjectHideFlags: 0
@@ -2605,9 +2617,17 @@ PrefabInstance:
       value: 17.3
       objectReference: {fileID: 0}
     - target: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 02c89d5dd4a8cd2be835c4bec70c88f8, type: 2}
+    - target: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
       propertyPath: m_fontSizeBase
       value: 17.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8302213139466240071, guid: 02c89d5dd4a8cd2be835c4bec70c88f8, type: 2}
     - target: {fileID: 1178029774147874942, guid: 3286273c207077a7f91ba95efe750641, type: 3}
       propertyPath: m_Pivot.y
       value: 0.50000006
