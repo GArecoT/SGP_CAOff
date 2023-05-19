@@ -31,10 +31,17 @@ public class HandleTransfer : MonoBehaviour
 
             //Passar input para balão
             textDisplay.text = inputField.text;
-            Canvas.ForceUpdateCanvases();
+            /* Canvas.ForceUpdateCanvases(); */
+            /* StartCoroutine(marcos()); */
             textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
             textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
         }
+    }
+
+    private IEnumerator marcos()
+    {
+        yield return new WaitForSeconds(.5f);
+        Canvas.ForceUpdateCanvases();
     }
 
 }
