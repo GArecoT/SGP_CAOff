@@ -11,9 +11,12 @@ public class HandleTransfer : MonoBehaviour
     public GameObject sampleObject;
     public GameObject parentObject;
     HandleNextStep HandleIrisIndex;
+    private HandleEdit handleEdit;
+
     private void Awake()
     {
         HandleIrisIndex = FindObjectOfType<HandleNextStep>();
+        handleEdit = FindObjectOfType<HandleEdit>();
     }
 
     private void Start()
@@ -23,18 +26,21 @@ public class HandleTransfer : MonoBehaviour
     }
     public void AddObject()
     {
-        if (inputField.text != string.Empty)
+        if (handleEdit == false)
         {
-            //Instaciar objeto
-            sampleObject = Instantiate(sampleObject, Vector3.zero, Quaternion.identity, parentObject.transform);
-            textDisplay = sampleObject.GetComponentInChildren<TextMeshProUGUI>();
+            if (inputField.text != string.Empty)
+            {
+                //Instaciar objeto
+                sampleObject = Instantiate(sampleObject, Vector3.zero, Quaternion.identity, parentObject.transform);
+                textDisplay = sampleObject.GetComponentInChildren<TextMeshProUGUI>();
 
-            //Passar input para balão
-            textDisplay.text = inputField.text;
-            /* Canvas.ForceUpdateCanvases(); */
-            /* StartCoroutine(marcos()); */
-            textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
-            textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
+                //Passar input para balão
+                textDisplay.text = inputField.text;
+                Canvas.ForceUpdateCanvases();
+                /* StartCoroutine(marcos()); */
+                textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
+                textDisplay.transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
+            }
         }
     }
 

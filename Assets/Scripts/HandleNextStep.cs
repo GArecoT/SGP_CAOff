@@ -18,6 +18,13 @@ public class HandleNextStep : MonoBehaviour
     public TMP_InputField inputField;
     public TMP_Text buttonText;
     public int IrisIndex = 0;
+    private HandleEdit handleEdit;
+
+    private void Awake()
+    {
+        handleEdit = FindObjectOfType<HandleEdit>();
+    }
+
 
     public void Start()
     {
@@ -26,65 +33,68 @@ public class HandleNextStep : MonoBehaviour
 
     public void HandleIrisIndex()
     {
-        if (IrisIndex < 9)
+        if (handleEdit.editMode == false)
         {
-            if (inputField.text != string.Empty || IrisIndex == 8)
+            if (IrisIndex < 9)
             {
-                if (IrisIndex == 0)
+                if (inputField.text != string.Empty || IrisIndex == 8)
                 {
-                    CreateMessage(IrisFala_01, parentObject);
-                    inputField.characterLimit = 14;
-                    inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
-                    inputField.onValueChanged.AddListener(OnCPFValueChanged);
+                    if (IrisIndex == 0)
+                    {
+                        CreateMessage(IrisFala_01, parentObject);
+                        inputField.characterLimit = 14;
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
+                        inputField.onValueChanged.AddListener(OnCPFValueChanged);
+                    }
+                    if (IrisIndex == 1)
+                    {
+                        CreateMessage(IrisFala_02, parentObject);
+                        inputField.characterLimit = 14;
+                        inputField.onValueChanged.RemoveListener(OnCPFValueChanged);
+                        inputField.onValueChanged.AddListener(OnPhoneValueChanged);
+                    }
+                    if (IrisIndex == 2)
+                    {
+                        CreateMessage(IrisFala_03, parentObject);
+                        inputField.characterLimit = 10;
+                        inputField.onValueChanged.RemoveListener(OnPhoneValueChanged);
+                        inputField.onValueChanged.AddListener(OnDateValueChanged);
+                    }
+                    if (IrisIndex == 3)
+                    {
+                        CreateMessage(IrisFala_04, parentObject);
+                        inputField.characterLimit = 1;
+                        inputField.onValueChanged.RemoveListener(OnDateValueChanged);
+                        inputField.onValueChanged.AddListener(OnSexValueChanged);
+                    }
+                    if (IrisIndex == 4)
+                    {
+                        CreateMessage(IrisFala_05, parentObject);
+                        inputField.characterLimit = -1;
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
+                        inputField.onValueChanged.RemoveListener(OnSexValueChanged);
+                    }
+                    if (IrisIndex == 5)
+                    {
+                        CreateMessage(IrisFala_06, parentObject);
+                    }
+                    if (IrisIndex == 6)
+                    {
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
+                        CreateMessage(IrisFala_07, parentObject);
+                    }
+                    if (IrisIndex == 7)
+                    {
+                        inputField.gameObject.SetActive(false);
+                        CreateMessage(IrisFala_08, parentObject);
+                        buttonText.text = "Continuar";
+                    }
+                    if (IrisIndex == 8)
+                    {
+                        CreateMessage(IrisFala_09, parentObject);
+                    }
+                    IrisIndex++;
                 }
-                if (IrisIndex == 1)
-                {
-                    CreateMessage(IrisFala_02, parentObject);
-                    inputField.characterLimit = 14;
-                    inputField.onValueChanged.RemoveListener(OnCPFValueChanged);
-                    inputField.onValueChanged.AddListener(OnPhoneValueChanged);
-                }
-                if (IrisIndex == 2)
-                {
-                    CreateMessage(IrisFala_03, parentObject);
-                    inputField.characterLimit = 10;
-                    inputField.onValueChanged.RemoveListener(OnPhoneValueChanged);
-                    inputField.onValueChanged.AddListener(OnDateValueChanged);
-                }
-                if (IrisIndex == 3)
-                {
-                    CreateMessage(IrisFala_04, parentObject);
-                    inputField.characterLimit = 1;
-                    inputField.onValueChanged.RemoveListener(OnDateValueChanged);
-                    inputField.onValueChanged.AddListener(OnSexValueChanged);
-                }
-                if (IrisIndex == 4)
-                {
-                    CreateMessage(IrisFala_05, parentObject);
-                    inputField.characterLimit = -1;
-                    inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
-                    inputField.onValueChanged.RemoveListener(OnSexValueChanged);
-                }
-                if (IrisIndex == 5)
-                {
-                    CreateMessage(IrisFala_06, parentObject);
-                }
-                if (IrisIndex == 6)
-                {
-                    inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
-                    CreateMessage(IrisFala_07, parentObject);
-                }
-                if (IrisIndex == 7)
-                {
-                    inputField.gameObject.SetActive(false);
-                    CreateMessage(IrisFala_08, parentObject);
-                    buttonText.text = "Continuar";
-                }
-                if (IrisIndex == 8)
-                {
-                    CreateMessage(IrisFala_09, parentObject);
-                }
-                IrisIndex++;
             }
         }
     }

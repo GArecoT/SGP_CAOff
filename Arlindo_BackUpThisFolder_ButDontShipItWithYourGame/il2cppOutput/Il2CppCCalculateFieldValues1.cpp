@@ -7807,12 +7807,18 @@ struct HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE  : public MonoBehavi
 {
 	// UnityEngine.GameObject HandleEdit::messageContainer
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___messageContainer_4;
+	// UnityEngine.GameObject HandleEdit::editButton
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___editButton_5;
 	// TMPro.TMP_Text HandleEdit::keyboardText
-	TMP_Text_tE8D677872D43AD4B2AAF0D6101692A17D0B251A9* ___keyboardText_5;
+	TMP_Text_tE8D677872D43AD4B2AAF0D6101692A17D0B251A9* ___keyboardText_6;
 	// TMPro.TMP_InputField HandleEdit::inputField
-	TMP_InputField_t3488E0EE8C3DF56C6A328EC95D1BEEA2DF4A7D5F* ___inputField_6;
+	TMP_InputField_t3488E0EE8C3DF56C6A328EC95D1BEEA2DF4A7D5F* ___inputField_7;
 	// UnityEngine.GameObject HandleEdit::parentObject
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___parentObject_7;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___parentObject_8;
+	// UnityEngine.Vector3 HandleEdit::position
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___position_9;
+	// UnityEngine.Vector2 HandleEdit::size
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___size_10;
 };
 
 // HandleMobileKeyboard
@@ -8715,9 +8721,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3203[3] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3204[12] = 
 {
 	static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___RECT_LEVELS_0)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___RECTS_PER_LEVEL_1)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___BUTTONS_MAX_2)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___levels_3)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___levelDepths_4)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___buttons_5)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___buttonLevels_6)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___buttonLastFrame_7)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___r_8)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___color_9)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___isGUIEnabled_10)),static_cast<int32_t>(offsetof(LTGUI_t49BC54B4CC82CCA1024CE7B3AAF9D0E4AB1B856C_StaticFields, ___global_counter_11)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3208[4] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3208[7] = 
 {
-	static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___messageContainer_4)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___keyboardText_5)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___inputField_6)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___parentObject_7)),};
+	static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___messageContainer_4)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___editButton_5)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___keyboardText_6)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___inputField_7)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___parentObject_8)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___position_9)),static_cast<int32_t>(offsetof(HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE, ___size_10)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3209[3] = 
 {
 	static_cast<int32_t>(offsetof(HandleMobileKeyboard_t8808CA1EB26865D78A579169507FE9D8A9213D16, ___inputField_4)),static_cast<int32_t>(offsetof(HandleMobileKeyboard_t8808CA1EB26865D78A579169507FE9D8A9213D16, ___chatContainer_5)),static_cast<int32_t>(offsetof(HandleMobileKeyboard_t8808CA1EB26865D78A579169507FE9D8A9213D16, ___timeSinceLastCall_6)),};

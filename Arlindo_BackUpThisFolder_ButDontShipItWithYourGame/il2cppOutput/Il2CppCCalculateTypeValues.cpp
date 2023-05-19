@@ -47620,12 +47620,18 @@ struct HandleEdit_t95D045C8CF98D9DE1157D7A6F753BD56661D0BDE  : public MonoBehavi
 {
 	// UnityEngine.GameObject HandleEdit::messageContainer
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___messageContainer_4;
+	// UnityEngine.GameObject HandleEdit::editButton
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___editButton_5;
 	// TMPro.TMP_Text HandleEdit::keyboardText
-	TMP_Text_tE8D677872D43AD4B2AAF0D6101692A17D0B251A9* ___keyboardText_5;
+	TMP_Text_tE8D677872D43AD4B2AAF0D6101692A17D0B251A9* ___keyboardText_6;
 	// TMPro.TMP_InputField HandleEdit::inputField
-	TMP_InputField_t3488E0EE8C3DF56C6A328EC95D1BEEA2DF4A7D5F* ___inputField_6;
+	TMP_InputField_t3488E0EE8C3DF56C6A328EC95D1BEEA2DF4A7D5F* ___inputField_7;
 	// UnityEngine.GameObject HandleEdit::parentObject
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___parentObject_7;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___parentObject_8;
+	// UnityEngine.Vector3 HandleEdit::position
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___position_9;
+	// UnityEngine.Vector2 HandleEdit::size
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___size_10;
 };
 
 // HandleMobileKeyboard
