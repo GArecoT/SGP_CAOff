@@ -10,13 +10,15 @@ public class HandleTransfer : MonoBehaviour
 
     public GameObject sampleObject;
     public GameObject parentObject;
-    HandleNextStep HandleIrisIndex;
-    private HandleEdit handleEdit;
+    private HandleNextStep handleNextStep;
+    public GameObject scriptObject;
 
     private void Awake()
     {
-        HandleIrisIndex = FindObjectOfType<HandleNextStep>();
-        handleEdit = FindObjectOfType<HandleEdit>();
+        scriptObject = GameObject.Find("HandleNextStep");
+        handleNextStep = scriptObject.GetComponent<HandleNextStep>();
+        handleNextStep.editMode = false;
+
     }
 
     private void Start()
@@ -26,7 +28,7 @@ public class HandleTransfer : MonoBehaviour
     }
     public void AddObject()
     {
-        if (handleEdit == false)
+        if (handleNextStep.editMode == false)
         {
             if (inputField.text != string.Empty)
             {
@@ -43,12 +45,5 @@ public class HandleTransfer : MonoBehaviour
             }
         }
     }
-
-    private IEnumerator marcos()
-    {
-        yield return new WaitForSeconds(.5f);
-        Canvas.ForceUpdateCanvases();
-    }
-
 }
 

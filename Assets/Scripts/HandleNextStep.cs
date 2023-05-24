@@ -18,13 +18,11 @@ public class HandleNextStep : MonoBehaviour
     public TMP_InputField inputField;
     public TMP_Text buttonText;
     public int IrisIndex = 0;
-    private HandleEdit handleEdit;
+    public bool editMode = true;
 
     private void Awake()
     {
-        handleEdit = FindObjectOfType<HandleEdit>();
     }
-
 
     public void Start()
     {
@@ -33,7 +31,7 @@ public class HandleNextStep : MonoBehaviour
 
     public void HandleIrisIndex()
     {
-        if (handleEdit.editMode == false)
+        if (!editMode)
         {
             if (IrisIndex < 9)
             {
@@ -41,6 +39,7 @@ public class HandleNextStep : MonoBehaviour
                 {
                     if (IrisIndex == 0)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_01, parentObject);
                         inputField.characterLimit = 14;
                         inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
@@ -48,38 +47,44 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 1)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_02, parentObject);
                         inputField.characterLimit = 14;
-                        inputField.onValueChanged.RemoveListener(OnCPFValueChanged);
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
                         inputField.onValueChanged.AddListener(OnPhoneValueChanged);
                     }
                     if (IrisIndex == 2)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_03, parentObject);
                         inputField.characterLimit = 10;
-                        inputField.onValueChanged.RemoveListener(OnPhoneValueChanged);
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
                         inputField.onValueChanged.AddListener(OnDateValueChanged);
                     }
                     if (IrisIndex == 3)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_04, parentObject);
                         inputField.characterLimit = 1;
-                        inputField.onValueChanged.RemoveListener(OnDateValueChanged);
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
                         inputField.onValueChanged.AddListener(OnSexValueChanged);
                     }
                     if (IrisIndex == 4)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_05, parentObject);
                         inputField.characterLimit = -1;
                         inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
-                        inputField.onValueChanged.RemoveListener(OnSexValueChanged);
                     }
                     if (IrisIndex == 5)
                     {
+                        RemoveAllListners();
                         CreateMessage(IrisFala_06, parentObject);
+                        inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
                     }
                     if (IrisIndex == 6)
                     {
+                        RemoveAllListners();
                         inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
                         CreateMessage(IrisFala_07, parentObject);
                     }
@@ -182,6 +187,65 @@ public class HandleNextStep : MonoBehaviour
         sex = sex.Replace("3", "").Replace("4", "").Replace("5", "").Replace("6", "").Replace("7", "").Replace("8", "").Replace("9", "").Replace("-", "").Replace("0", ""); // Remove caracteres especiais
 
         return sex;
+    }
+
+    private void RemoveAllListners()
+    {
+        inputField.onValueChanged.RemoveListener(OnCPFValueChanged);
+        inputField.onValueChanged.RemoveListener(OnPhoneValueChanged);
+        inputField.onValueChanged.RemoveListener(OnDateValueChanged);
+        inputField.onValueChanged.RemoveListener(OnSexValueChanged);
+    }
+
+    public void RemoveMasksEdit(int index)
+    {
+
+        RemoveAllListners();
+        if (index == 1)
+        {
+            RemoveAllListners();
+            inputField.characterLimit = -1;
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
+        }
+        if (index == 2)
+        {
+            inputField.characterLimit = 14;
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
+            RemoveAllListners();
+            inputField.onValueChanged.AddListener(OnCPFValueChanged);
+        }
+        if (index == 3)
+        {
+            inputField.characterLimit = 14;
+            RemoveAllListners();
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
+            inputField.onValueChanged.AddListener(OnPhoneValueChanged);
+        }
+        if (index == 4)
+        {
+            inputField.characterLimit = 10;
+            RemoveAllListners();
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
+            inputField.onValueChanged.AddListener(OnDateValueChanged);
+        }
+        if (index == 5)
+        {
+            inputField.characterLimit = 1;
+            RemoveAllListners();
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
+            inputField.onValueChanged.AddListener(OnSexValueChanged);
+        }
+        if (index == 6 || index == 7)
+        {
+            inputField.characterLimit = -1;
+            inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
+            RemoveAllListners();
+        }
+        if (index == 8)
+        {
+            inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
+        }
+
     }
 
 }

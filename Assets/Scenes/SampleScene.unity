@@ -334,6 +334,7 @@ MonoBehaviour:
   inputField: {fileID: 1379819453}
   sampleObject: {fileID: 2704777457821883561, guid: e9a819e91b9e92e858c365752b574c1e, type: 3}
   parentObject: {fileID: 990827762}
+  scriptObject: {fileID: 0}
 --- !u!4 &218327067
 Transform:
   m_ObjectHideFlags: 0
@@ -654,6 +655,7 @@ MonoBehaviour:
   inputField: {fileID: 0}
   sampleObject: {fileID: 0}
   parentObject: {fileID: 0}
+  scriptObject: {fileID: 0}
 --- !u!114 &396289336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,6 +1658,7 @@ MonoBehaviour:
   inputField: {fileID: 0}
   sampleObject: {fileID: 0}
   parentObject: {fileID: 0}
+  scriptObject: {fileID: 0}
 --- !u!114 &1213986733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,6 +2295,7 @@ MonoBehaviour:
   inputField: {fileID: 1379819453}
   buttonText: {fileID: 1164906993}
   IrisIndex: 0
+  editMode: 1
 --- !u!4 &1836108401
 Transform:
   m_ObjectHideFlags: 0
@@ -3180,6 +3184,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1791249286}
     m_Modifications:
     - target: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
+      propertyPath: m_text
+      value: ENVIAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178029774147874941, guid: 3286273c207077a7f91ba95efe750641, type: 3}
       propertyPath: m_fontSize
       value: 17.3
       objectReference: {fileID: 0}
@@ -3401,7 +3409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178029775473427900, guid: 3286273c207077a7f91ba95efe750641, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Botao Enviar
       objectReference: {fileID: 0}
     - target: {fileID: 1178029775473427900, guid: 3286273c207077a7f91ba95efe750641, type: 3}
       propertyPath: m_TagString

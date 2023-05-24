@@ -7,15 +7,29 @@ using TMPro;
 public class HandleEdit : MonoBehaviour
 {
     public GameObject messageContainer,
-                      editButton;
+                      editButton,
+                      scriptObject,
+                      buttonObject;
     public TMP_Text keyboardText;
     TMP_InputField inputField;
     Button button;
-    GameObject parentObject;
-
+    public int irisIndex,
+               irisIndexBKP;
     public Vector3 position;
     public Vector2 size;
-    public bool editMode = false;
+    HandleNextStep handleNextStep;
+    bool editMode = false;
+
+    void Start()
+    {
+        inputField = GameObject.Find("InputField (TMP)").GetComponent<TMP_InputField>();
+        button = GameObject.Find("Botao Enviar").GetComponent<Button>();
+        scriptObject = GameObject.Find("HandleNextStep");
+        handleNextStep = scriptObject.GetComponent<HandleNextStep>();
+        handleNextStep.editMode = false;
+        irisIndex = handleNextStep.IrisIndex;
+        irisIndexBKP = irisIndex;
+    }
 
     public void Update()
     {
@@ -24,26 +38,36 @@ public class HandleEdit : MonoBehaviour
 
         editButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(position.x - size.x - 35, editButton.GetComponent<RectTransform>().anchoredPosition.y, 0);
 
-        if (editMode)
+        if (handleNextStep.editMode && editMode)
         {
-            parentObject = messageContainer.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-            if (parentObject != null)
+            button.gameObject.GetComponentInChildren<TMP_Text>().text = "SALVAR";
+            keyboardText.text = inputField.text;
+            button.onClick.AddListener(() =>
             {
-                inputField = parentObject.transform.Find("InputField (TMP)").GetComponent<TMP_InputField>();
-                button = parentObject.transform.Find("Button").GetComponent<Button>();
-                if (inputField != null && button != null)
+                if (handleNextStep.editMode && editMode)
                 {
-                    Debug.Log("FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOI");
-                    keyboardText.text = inputField.text;
-                    button.onClick.AddListener(() => editMode = false);
+                    handleNextStep.editMode = false;
+                    editMode = false;
+                    handleNextStep.IrisIndex = irisIndexBKP;
+                    button.gameObject.GetComponentInChildren<TMP_Text>().text = "ENVIAR";
+                    handleNextStep.RemoveMasksEdit(irisIndexBKP + 1);
+                    inputField.text = "";
                 }
-            }
+            });
         }
     }
 
     public void edit()
     {
-        editMode = true;
+        if (handleNextStep.editMode == false)
+        {
+            handleNextStep.editMode = true;
+            editMode = true;
+            handleNextStep.RemoveMasksEdit(irisIndex);
+            inputField.text = keyboardText.text;
+            irisIndexBKP = handleNextStep.IrisIndex;
+            handleNextStep.IrisIndex = irisIndex;
+        }
     }
 
 }
