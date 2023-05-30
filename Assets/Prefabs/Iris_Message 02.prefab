@@ -270,7 +270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 903.83, y: 0}
+  m_AnchoredPosition: {x: 770.62, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4980876202782154869
@@ -302,7 +302,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Otimo! Por favor, informe seu telefone com \no DDD. E por meio dele que
-    entraremos em contato."
+    entraremos \nem contato."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 922993951d0551af686431a30dc211c7, type: 2}
   m_sharedMaterial: {fileID: -4941674029580326195, guid: 922993951d0551af686431a30dc211c7, type: 2}
