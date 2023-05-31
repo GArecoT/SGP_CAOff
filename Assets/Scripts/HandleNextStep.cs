@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+using System;
+using System.Text.RegularExpressions;
 
 public class HandleNextStep : MonoBehaviour
 {
@@ -19,13 +22,22 @@ public class HandleNextStep : MonoBehaviour
     public TMP_Text buttonText;
     public int IrisIndex = 0;
     public bool editMode = true;
-
+    [Header("Valores Para o SGP")]
+    [SerializeField] public string nome, email, cidade, estado, cpf, telefone, sexo;
+    public DateTime nascimento;
+    HighscoreTable SalvarJson;
+    DatabaseConnection conecta;
     private void Awake()
     {
+
     }
 
     public void Start()
     {
+        SalvarJson = FindObjectOfType<HighscoreTable>();
+        Debug.Log(PlayerPrefs.GetString("Json"));
+        conecta = FindObjectOfType<DatabaseConnection>();
+        //conecta.MandarValoresAsync();
         inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
     }
 
@@ -39,6 +51,7 @@ public class HandleNextStep : MonoBehaviour
                 {
                     if (IrisIndex == 0)
                     {
+                        nome = inputField.text;
                         RemoveAllListners();
                         CreateMessage(IrisFala_01, parentObject);
                         inputField.characterLimit = 14;
@@ -47,6 +60,7 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 1)
                     {
+                        cpf = inputField.text;
                         RemoveAllListners();
                         CreateMessage(IrisFala_02, parentObject);
                         inputField.characterLimit = 14;
@@ -55,6 +69,7 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 2)
                     {
+                        telefone = inputField.text;
                         RemoveAllListners();
                         CreateMessage(IrisFala_03, parentObject);
                         inputField.characterLimit = 10;
@@ -63,6 +78,7 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 3)
                     {
+                        inputField.text = System.String.Format("{0:yyyy-MM}", nascimento);
                         RemoveAllListners();
                         CreateMessage(IrisFala_04, parentObject);
                         inputField.characterLimit = 1;
@@ -71,6 +87,11 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 4)
                     {
+                        string sex = inputField.text;
+                        if (sex == "1")
+                            sexo = "Masculino";
+                        else
+                            sexo = "Feminino";
                         RemoveAllListners();
                         CreateMessage(IrisFala_05, parentObject);
                         inputField.characterLimit = -1;
@@ -78,19 +99,25 @@ public class HandleNextStep : MonoBehaviour
                     }
                     if (IrisIndex == 5)
                     {
+                        estado = inputField.text;
                         RemoveAllListners();
                         CreateMessage(IrisFala_06, parentObject);
                         inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
                     }
                     if (IrisIndex == 6)
                     {
+                        cidade = inputField.text;
                         RemoveAllListners();
                         inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
                         CreateMessage(IrisFala_07, parentObject);
                     }
                     if (IrisIndex == 7)
                     {
+                        email = inputField.text;
                         inputField.gameObject.SetActive(false);
+                        SalvarJson.Iniciar();
+                        Debug.Log(PlayerPrefs.GetString("Json"));
+                        //conecta.MandarValoresAsync();
                         CreateMessage(IrisFala_08, parentObject);
                         buttonText.text = "Continuar";
                     }
@@ -120,7 +147,7 @@ public class HandleNextStep : MonoBehaviour
     private string ApplyCPFFormat(string cpf)
     {
         cpf = cpf.Replace(".", "").Replace("-", ""); // Remove caracteres especiais
-
+        ValidaCpf(cpf);
         if (cpf.Length > 3)
             cpf = cpf.Insert(3, ".");
 
@@ -132,13 +159,88 @@ public class HandleNextStep : MonoBehaviour
 
         return cpf;
     }
+    public static bool ValidaCpf(string cpf)
+    {
+        int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+        int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+
+
+        cpf = cpf.Trim().Replace(".", "").Replace("-", "");
+        Debug.Log(cpf.Length);
+        if (cpf.Length != 11)
+            return false;
+
+
+
+        if (!cpf.All(Char.IsDigit))
+            return false;
+
+
+        for (int j = 0; j < 10; j++)
+            if (j.ToString().PadLeft(11, char.Parse(j.ToString())) == cpf)
+                return false;
+
+
+
+        string tempCpf = cpf.Substring(0, 9);
+        int soma = 0;
+
+
+
+        for (int i = 0; i < 9; i++)
+            soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+
+
+
+        int resto = soma % 11;
+        if (resto < 2)
+            resto = 0;
+        else
+            resto = 11 - resto;
+
+
+
+        string digito = resto.ToString();
+        tempCpf = tempCpf + digito;
+        soma = 0;
+        for (int i = 0; i < 10; i++)
+            soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+
+
+
+        resto = soma % 11;
+        if (resto < 2)
+            resto = 0;
+        else
+            resto = 11 - resto;
+
+
+
+        digito = digito + resto.ToString();
+
+
+        Debug.Log(cpf.EndsWith(digito));
+        return cpf.EndsWith(digito);
+    }
 
     private void OnPhoneValueChanged(string newValue)
     {
         inputField.text = ApplyPhoneFormat(newValue);
+        ValidaTelefone(newValue);
         inputField.stringPosition = inputField.text.Length;
         inputField.ForceLabelUpdate();
     }
+    
+    public bool ValidaTelefone(string telefone)
+    {
+        Regex Rgx = new Regex(@"^\(\d{2}\)\d{5}-\d{4}$"); //formato (XX)XXXXX-XXXX
+        if (!Rgx.IsMatch(telefone))
+            return false;
+        else
+            return true;
+    }
+    
 
     private string ApplyPhoneFormat(string phone)
     {
@@ -203,9 +305,11 @@ public class HandleNextStep : MonoBehaviour
         RemoveAllListners();
         if (index == 1)
         {
+            
             RemoveAllListners();
             inputField.characterLimit = -1;
             inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
+           
         }
         if (index == 2)
         {
@@ -213,6 +317,7 @@ public class HandleNextStep : MonoBehaviour
             inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
             RemoveAllListners();
             inputField.onValueChanged.AddListener(OnCPFValueChanged);
+            
         }
         if (index == 3)
         {
@@ -234,16 +339,19 @@ public class HandleNextStep : MonoBehaviour
             RemoveAllListners();
             inputField.characterValidation = TMP_InputField.CharacterValidation.Integer;
             inputField.onValueChanged.AddListener(OnSexValueChanged);
+            
         }
         if (index == 6 || index == 7)
         {
             inputField.characterLimit = -1;
             inputField.characterValidation = TMP_InputField.CharacterValidation.Name;
             RemoveAllListners();
+            
         }
         if (index == 8)
         {
             inputField.characterValidation = TMP_InputField.CharacterValidation.EmailAddress;
+            
         }
 
     }
