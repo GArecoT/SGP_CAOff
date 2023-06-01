@@ -2022,6 +2022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779de96a480dd5d4d89a7949e4089e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 2107511710}
+  fase: 0
 --- !u!114 &1551061913
 MonoBehaviour:
   m_ObjectHideFlags: 0
